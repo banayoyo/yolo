@@ -24,7 +24,8 @@ class Detector(object):
         self.boundary1 = self.cell_size * self.cell_size * self.num_class
         self.boundary2 = self.boundary1 +\
             self.cell_size * self.cell_size * self.boxes_per_cell
-
+        
+        #tf.reset_default_graph()
         self.sess = tf.Session()
         self.sess.run(tf.global_variables_initializer())
 
@@ -203,7 +204,7 @@ def main():
     # detector.camera_detector(cap)
 
     # detect from image file
-    imname = 'test/person.jpg'
+    imname = './test/person.jpg'
     detector.image_detector(imname)
 
 
