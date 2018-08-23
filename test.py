@@ -199,12 +199,13 @@ def main():
     weight_file = os.path.join(args.data_dir, args.weight_dir, args.weights)
     detector = Detector(yolo, weight_file)
 
-    # detect from camera
-    # cap = cv2.VideoCapture(-1)
-    # detector.camera_detector(cap)
+    '''---data source select only choose one---'''
+    'detect from camera'
+#    cap = cv2.VideoCapture(0)
+#    detector.camera_detector(cap)
 
-    # detect from image file
-    imname = './test/person.jpg'
+    'detect from image file'
+    imname = './test/bahe.jpg'
     detector.image_detector(imname)
 
 

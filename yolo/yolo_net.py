@@ -55,7 +55,9 @@ class YOLONet(object):
                       keep_prob=0.5,
                       is_training=True,
                       scope='yolo'):
-        with tf.variable_scope(scope):
+        'solve the json resue issue, when run with pic_mode multi_times'
+        with tf.variable_scope(scope,reuse=tf.AUTO_REUSE):
+        #with tf.variable_scope(scope):
             with slim.arg_scope(
                 [slim.conv2d, slim.fully_connected],
                 activation_fn=leaky_relu(alpha),
