@@ -7,7 +7,9 @@ import yolo.config as cfg
 from yolo.yolo_net import YOLONet
 from utils.timer import Timer
 
-
+"""TO clear defualt graph and nodes"""
+tf.reset_default_graph()
+ 
 class Detector(object):
 
     def __init__(self, net, weight_file):
@@ -152,7 +154,7 @@ class Detector(object):
         inter = 0 if tb < 0 or lr < 0 else tb * lr
         return inter / (box1[2] * box1[3] + box2[2] * box2[3] - inter)
 
-    def camera_detector(self, cap, wait=10):
+    def camera_detector(self, cap, wait=5):
         detect_timer = Timer()
         ret, _ = cap.read()
 
