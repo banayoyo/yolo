@@ -105,6 +105,9 @@ with tf.variable_scope("bar"):
             assert foo_scope3.name == "bar/baz/foo"
 
 """"""
+"""name_scope的作用对象"""
+""""""
+
 with tf.name_scope('nsc1'):
     v1 = tf.Variable([1], name='v1')
     with tf.variable_scope('vsc1'):
