@@ -29,9 +29,20 @@ class YOLONet(object):
         self.batch_size = cfg.BATCH_SIZE
         self.alpha = cfg.ALPHA
 
-        self.offset = np.transpose(np.reshape(np.array(
-            [np.arange(self.cell_size)] * self.cell_size * self.boxes_per_cell),
-            (self.boxes_per_cell, self.cell_size, self.cell_size)), (1, 2, 0))
+#        self.offset = np.transpose(np.reshape(np.array([np.arange(self.cell_size)] * self.cell_size * self.boxes_per_cell)
+#                                               ,(self.boxes_per_cell, self.cell_size, self.cell_size))
+#                                   ,(1, 2, 0))
+    
+        #arange(7), build 1x7 array, value from 0 to 6
+        a1 = [np.arange(self.cell_size)]
+        # expand from 1x7 to 14x7
+        a2 = np.array(a1 * self.cell_size * self.boxes_per_cell)
+        #change to matrix, demesion is 2x7x7
+        a3 = (self.boxes_per_cell, self.cell_size, self.cell_size)
+        a4 = np.reshape(a2,a3)
+        print ('a3 = \n',a2)
+        print ('a4 = \n',a4)
+        self.offset = np.transpose (a4,(1, 2, 0))
 
         self.images = tf.placeholder(
             tf.float32, [None, self.image_size, self.image_size, 3],

@@ -3,7 +3,7 @@ import os
 #
 # path and dataset parameter
 #
-
+#该cfg文件，是通过import的方式进行配置的。并不是main的arg配置
 DATA_PATH = 'data'
 
 PASCAL_PATH = os.path.join(DATA_PATH, 'pascal_voc')

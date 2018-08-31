@@ -130,6 +130,9 @@ def update_config_paths(data_dir, weights_file):
 
     cfg.WEIGHTS_FILE = os.path.join(cfg.WEIGHTS_DIR, weights_file)
 
+'这个parser没有作用，是因为main没有带arg参数。举例如下：'
+#def main(argv):
+#    args = parser.parse_args(argv[1:])
 
 def main():
     parser = argparse.ArgumentParser()

@@ -7,11 +7,7 @@ import yolo.config as cfg
 from yolo.yolo_net import YOLONet
 from utils.timer import Timer
 
-"""TO clear defualt graph and nodes"""
-tf.reset_default_graph()
- 
 class Detector(object):
-
     def __init__(self, net, weight_file):
         self.net = net
         self.weights_file = weight_file
@@ -188,6 +184,10 @@ class Detector(object):
 
 
 def main():
+#   TO clear defualt graph and nodes
+    tf.reset_default_graph()
+
+#    here, no use parse, only use default value to set weight
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', default="YOLO_small.ckpt", type=str)
     parser.add_argument('--weight_dir', default='weights', type=str)
@@ -196,17 +196,18 @@ def main():
     args = parser.parse_args()
 
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+    weight_file = os.path.join(args.data_dir, args.weight_dir, args.weights)
 
     yolo = YOLONet(False)
-    weight_file = os.path.join(args.data_dir, args.weight_dir, args.weights)
     detector = Detector(yolo, weight_file)
 
-    '''---data source select only choose one---'''
-    'detect from camera'
+#   ---data source select only choose one---
+    
+#    ----'detect from camera'
 #    cap = cv2.VideoCapture(0)
 #    detector.camera_detector(cap)
 
-    'detect from image file'
+#    ----'detect from image file'
     imname = './test/bahe.jpg'
     detector.image_detector(imname)
 
